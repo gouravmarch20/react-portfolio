@@ -1,79 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-// import { useInView } from "react-intersection-observer";
+import React from "react";
+
+// Styled components
 import styled from "styled-components";
-import { reveal } from "../util";
-import Question from "./Question";
+import { About } from "../styles";
+
+// Components
+import Toggle from "./Toggle";
+
+// Animation
+import { AnimateSharedLayout } from "framer-motion";
+
+// Use scroll animation
+import { useScroll } from "./useScroll";
+import { fade } from "../animation";
 
 const FaqSection = () => {
-  //State
-  const [toggleFaq, setToggleFaq] = useState([
-    {
-      title: "How Do I Start?",
-      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
-      active: false,
-    },
-    {
-      title: "What Products do you offer?",
-      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
-      active: false,
-    },
-    {
-      title: "Diferrent Payment Methods",
-      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
-      active: false,
-    },
-    {
-      title: "Daily Schedule",
-      description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum voluptatem dolorum obcaecati aperiam impedit, architecto reprehenderit aliquid tempore excepturi consequatur esse quis magni odit? Nesciunt animi veritatis distinctio rerum quo.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum expedita facere quasi aliquam harum saepe fuga suscipit enim quisquam alias?`,
-      active: false,
-    },
-  ]);
+  const [element, controls] = useScroll();
+
   return (
-    <Faq>
-      <h2>
-        Any Questions?<span>FAQ</span>
-      </h2>
-      {toggleFaq.map((faq) => (
-        <Question
-          toggleFaq={toggleFaq}
-          key={faq.title}
-          faq={faq}
-          setToggleFaq={setToggleFaq}
-        />
-      ))}
+    <Faq variants={fade} ref={element} animate={controls} initial="hidden">
+      <h2>Any questions?</h2>
+      <h4>
+        <span>FAQ</span>
+      </h4>
+      <AnimateSharedLayout>
+        <Toggle title="How Do I Start?">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
+              quae?
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="Daily Schedule">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
+              quae?
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="Different Payment Methods">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
+              quae?
+            </p>
+          </div>
+        </Toggle>
+        <Toggle title="What Products Do You Offer?">
+          <div className="answer">
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo,
+              quae?
+            </p>
+          </div>
+        </Toggle>
+      </AnimateSharedLayout>
     </Faq>
   );
 };
 
-const Faq = styled(motion.section)`
-  min-height: 100vh;
-  padding: 5rem 10rem;
-  background: #1b1b1b;
-  color: white;
-
+const Faq = styled(About)`
+  display: block;
   span {
     display: block;
-    color: #23d997;
-    font-weight: bold;
   }
   h2 {
-    font-weight: lighter;
     padding-bottom: 2rem;
+    font-weight: lighter;
+  }
+  .faq-line {
+    background: #ccc;
+    height: 0.2rem;
+    margin: 2rem 0rem;
+    width: 100%;
   }
   .question {
     padding: 3rem 0rem;
     cursor: pointer;
-  }
-  .faq-line {
-    background: #cccccc;
-    height: 0.2rem;
-    margin: 1rem 0rem;
-    width: 100%;
   }
   .answer {
     padding: 2rem 0rem;
