@@ -1,56 +1,56 @@
-import React from "react";
+import React from 'react'
 
 // Router
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 // Styled Components
-import styled from "styled-components";
+import styled from 'styled-components'
 
 // Animation
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
 
 // To check where we are
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
 
 const Nav = () => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   return (
     <StyledNav>
       <h1>
-        <Link id="logo" to="/">
+        <Link id='logo' to='/'>
           Capture
         </Link>
       </h1>
       <ul>
         <li>
-          <Link to="/">1. About Us</Link>
+          <Link to='/'> About Us</Link>
           <Line
             transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/" ? "50%" : "0%" }}
+            initial={{ width: '0%' }}
+            animate={{ width: pathname === '/' ? '50%' : '0%' }}
           />
         </li>
         <li>
-          <Link to="/work">2. Our Work</Link>
+          <Link to='/work'> Our Work</Link>
           <Line
             transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/work" ? "50%" : "0%" }}
+            initial={{ width: '0%' }}
+            animate={{ width: pathname === '/work' ? '50%' : '0%' }}
           />
         </li>
         <li>
-          <Link to="/contact">3. Contact Us</Link>
+          <Link to='/contact'> Contact Us</Link>
           <Line
             transition={{ duration: 0.75 }}
-            initial={{ width: "0%" }}
-            animate={{ width: pathname === "/contact" ? "50%" : "0%" }}
+            initial={{ width: '0%' }}
+            animate={{ width: pathname === '/contact' ? '50%' : '0%' }}
           />
         </li>
       </ul>
     </StyledNav>
-  );
-};
+  )
+}
 
 const StyledNav = styled.nav`
   min-height: 10vh;
@@ -73,7 +73,7 @@ const StyledNav = styled.nav`
   }
   #logo {
     font-size: 1.5rem;
-    font-family: "Lobster", cursive;
+    font-family: 'Lobster', cursive;
     font-weight: lighter;
   }
   li {
@@ -96,7 +96,7 @@ const StyledNav = styled.nav`
       }
     }
   }
-`;
+`
 
 const Line = styled(motion.div)`
   height: 0.3rem;
@@ -108,6 +108,6 @@ const Line = styled(motion.div)`
   @media screen and (max-width: 1300px) {
     left: 0%;
   }
-`;
+`
 
-export default Nav;
+export default Nav

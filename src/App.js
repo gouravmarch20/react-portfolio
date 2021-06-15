@@ -9,7 +9,7 @@ import OurWork from "./pages/OurWork";
 import ContactUs from "./pages/ContactUs";
 import MovieDetail from './pages/MovieDetail'
 //Router
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 const App = () => {
   return (
     <div className="App">
